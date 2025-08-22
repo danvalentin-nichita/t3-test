@@ -2,6 +2,7 @@ import "~/styles/globals.css";
 
 import { type Metadata } from "next";
 import { Geist } from "next/font/google";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Create T3 App",
@@ -14,12 +15,38 @@ const geist = Geist({
   variable: "--font-geist-sans",
 });
 
+function TopNav() {
+  return (
+    <nav className="text-x1 flex w-full items-center justify-between border-b p-4 font-semibold">
+      <div className="container mx-auto text-white">
+        <h1 className="text-lg font-bold">Top Navigation</h1>
+        </div>
+      <div className="flex gap-4">
+        <Link href="/" className="text-white hover:underline">
+        </Link>  
+        <a href="/about" className="text-white hover:underline">
+          About
+        </a>
+        <a href="/gallery" className="text-white hover:underline">
+          Gallery
+        </a>
+        <a href="/contact" className="text-white hover:underline">
+          Contact 
+        </a>
+      </div>
+    </nav>
+  );
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${geist.variable}`}>
-      <body>{children}</body>
+      <body className="flex flex-col gap-4">
+        <TopNav />
+        {children}
+      </body>
     </html>
   );
 }
